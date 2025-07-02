@@ -1,0 +1,138 @@
+// android/app/build.gradle
+
+// The plugins {} block MUST be at the very top of the file.
+// Only buildscript {} or pluginManagement {} blocks (if used) can precede it.
+plugins {
+    id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+// This script for localProperties and other definitions now comes AFTER plugins {}
+// but BEFORE these variables are used in blocks like android {} or dependencies {}.
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties') // Assumes local.properties is in your project's android/ folder
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+// Define flutterRoot. This is often needed by the flutter.gradle script.
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+// Define kotlin_version.
+// It's best practice to define this in your project's root build.gradle (android/build.gradle)
+// as ext.kotlin_version = 'YOUR_KOTLIN_VERSION' and reference it here.
+// If not defined in the root, you can define it here as a fallback.
+// You can also retrieve it from local.properties if you store it there.
+def kotlin_version = localProperties.getProperty('flutter.kotlinVersion') ?: '1.9.23' // Example: Read from local.properties or use a default. Ensure this version is appropriate.
+
+
+android {
+    namespace = "com.example.accounting_app" // Ensure this matches your package name
+
+    // Ensure compileSdk is appropriate. flutter.compileSdkVersion is common.
+    // The value for compileSdk should be an integer.
+    // flutter.compileSdkVersion should resolve to an integer.
+    // If it doesn't, or if you want to set it manually, use an integer like 34.
+    compileSdk = flutter.compileSdkVersion.toInteger() // Or a specific integer like 34
+
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString() // Ensure jvmTarget is a string
+    }
+
+    defaultConfig {
+        applicationId = "com.example.accounting_app"
+        // The value for minSdk should be an integer.
+        minSdk = 28 // Changed from flutter.minSdkVersion or a lower value to 28
+        // The value for targetSdk should be an integer.
+        // flutter.targetSdkVersion should resolve to an integer.
+        targetSdk = flutter.targetSdkVersion.toInteger() // Or a specific integer like 34
+
+        // Option 1 (Recommended): Let Flutter plugin handle versionCode and versionName
+        // These are derived from your pubspec.yaml (e.g., version: 1.0.0+1)
+        versionCode flutter.versionCode.toInteger()
+        versionName flutter.versionName
+
+        // Option 2: If you MUST read from local.properties directly (and they exist there)
+        // Ensure 'flutter.versionCode' and 'flutter.versionName' are in your android/local.properties
+        // versionCode = localProperties.getProperty('flutter.versionCode')?.toInteger() ?: 1
+        // versionName = localProperties.getProperty('flutter.versionName') ?: "1.0"
+
+        multiDexEnabled true // Good to keep, especially with AR and other plugins
+    }
+
+    signingConfigs {
+        debug {
+            // Default debug signing configuration is usually sufficient.
+        }
+        release {
+            // TODO: Configure your release signing key here for actual app store releases
+            // Example:
+            // if (project.hasProperty('MYAPP_RELEASE_STORE_FILE') &&
+            //     project.hasProperty('MYAPP_RELEASE_STORE_PASSWORD') &&
+            //     project.hasProperty('MYAPP_RELEASE_KEY_ALIAS') &&
+            //     project.hasProperty('MYAPP_RELEASE_KEY_PASSWORD')) {
+            //     storeFile file(MYAPP_RELEASE_STORE_FILE)
+            //     storePassword MYAPP_RELEASE_STORE_PASSWORD
+            //     keyAlias MYAPP_RELEASE_KEY_ALIAS
+            //     keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            // } else {
+            //     signingConfig signingConfigs.debug // Fallback for CI or if keys not set
+            // }
+        }
+    }
+
+    buildTypes {
+        debug {
+            // signingConfig signingConfigs.debug // Usually not needed to explicitly set for debug
+        }
+        release {
+            // TODO: Change to signingConfigs.release when you have a valid release key setup
+            signingConfig signingConfigs.debug // TEMPORARY: Use debug signing for release builds if release keys aren't set up
+            minifyEnabled true
+            shrinkResources true // Consider true for release builds
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Custom packaging options might be needed for some native libraries,
+    // especially with AR plugins if they bundle their own versions of ARCore.
+    // packagingOptions {
+    //    pickFirst 'lib/arm64-v8a/libarcore_camera_utility.so'
+    //    pickFirst 'lib/armeabi-v7a/libarcore_camera_utility.so'
+    //    pickFirst 'lib/x86_64/libarcore_camera_utility.so'
+    //    pickFirst 'lib/x86/libarcore_camera_utility.so'
+    // }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    // Use the kotlin_version defined (ideally in root project's build.gradle or read from local.properties)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'androidx.multidex:multidex:2.0.1' // For multiDexEnabled
+
+    // Flutter plugins are typically added automatically by the Flutter tool.
+}
+
+
+
+

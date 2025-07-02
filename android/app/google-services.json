@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "995637601021",
+    "project_id": "accountingapp-fe504",
+    "storage_bucket": "accountingapp-fe504.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995637601021:android:db4cb29683e18971c61494",
+        "android_client_info": {
+          "package_name": "com.example.accounting_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFYqegaAmU7FSsaDAWnR94lAqg2aUyE0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995637601021:android:ce4e2cafa12d75b7c61494",
+        "android_client_info": {
+          "package_name": "com.example.accountingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFYqegaAmU7FSsaDAWnR94lAqg2aUyE0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
