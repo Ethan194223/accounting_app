@@ -25,7 +25,7 @@ Track income & expenses, visualise analytics, and keep your e-pet healthy by sav
 ![signup page](screenshots/signup_page.png)
 
 ### 2 · Sign-up (data filled & saved to Firebase)
-![signup page](screenshots/signup_page(fill data).png)
+![signup page](screenshots/signup_page_fill_data.png)
 
 ### 3 · Home – today’s balance & pet
 ![home page](screenshots/home_page.png)
