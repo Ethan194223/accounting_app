@@ -49,13 +49,13 @@ Track income & expenses, visualise analytics, and keep your e-pet healthy by sav
 ![home page](screenshots/profile_page.png)
 
 ### 10 · Login screen
-![home page](screenshots/login page.png)
+![home page](screenshots/login_page.png)
 
 ### 11 · Firebase data view
 ![home page](screenshots/firebase_page.png)
 
 ### 12 · Login error (animation on failure)
-![home page](screenshots/login fail.png)
+![home page](screenshots/login_fail.png)
 
 ---
 
