@@ -33,6 +33,9 @@ Track income & expenses, visualise analytics, and keep your e-pet healthy by sav
 ### 4 · Pet status (hunger & happiness)
 ![home page](screenshots/pet_statute.png)
 
+### 4 · AR
+![home page](screenshots/AR_function.png)
+
 ### 5 · Add income / expense
 ![home page](screenshots/add_expense_page.png)
 
